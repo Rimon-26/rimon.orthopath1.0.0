@@ -8,7 +8,9 @@ const ASSETS_TO_CACHE = [
   "./js/data.js",
   "./js/storage.js",
   "./js/app.js",
-  "./js/admin.js"
+  "./js/admin.js",
+  "./assets/icon-192.png",
+  "./assets/icon-512.png"
 ];
 
 self.addEventListener("install", (event) => {
