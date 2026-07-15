@@ -41,16 +41,11 @@ function updateOnlineBadge() {
 }
 
 // ============================================================
-// LOGO (inline SVG so it works fully offline, no external asset)
+// LOGO (uses the app's real icon image, cached offline via service worker)
 // ============================================================
 function renderLogo() {
-  const svg = `
-  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="50" cy="50" r="48" fill="#B8860B"/>
-    <circle cx="50" cy="50" r="41" fill="#0F4C36"/>
-    <text x="50" y="63" font-family="Tiro Bangla, serif" font-size="42" fill="#FAF6ED" text-anchor="middle" font-weight="700">অ</text>
-  </svg>`;
-  document.querySelectorAll(".logo-slot").forEach(el => el.innerHTML = svg);
+  const img = `<img src="assets/icon-512.png" alt="অর্থপাঠ" style="width:100%; height:100%; object-fit:contain; border-radius:50%;">`;
+  document.querySelectorAll(".logo-slot").forEach(el => el.innerHTML = img);
 }
 
 // ============================================================
