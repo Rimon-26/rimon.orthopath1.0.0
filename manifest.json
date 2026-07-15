@@ -1,0 +1,22 @@
+{
+  "name": "অর্থপাঠ - Orthopath",
+  "short_name": "অর্থপাঠ",
+  "description": "ফিন্যান্স, ব্যাংকিং ও বিমা - একাদশ ও দ্বাদশ শ্রেণীর শিক্ষার্থীদের জন্য",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FAF6ED",
+  "theme_color": "#0F4C36",
+  "icons": [
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

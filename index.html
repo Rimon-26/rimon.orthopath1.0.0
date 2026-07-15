@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>অর্থপাঠ | Orthopath</title>
+<meta name="description" content="ফিন্যান্স, ব্যাংকিং ও বিমা — একাদশ ও দ্বাদশ শ্রেণীর শিক্ষার্থীদের জন্য সহজবোধ্য শিক্ষা অ্যাপ">
+<meta name="theme-color" content="#0F4C36">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2248%22 fill=%22%23B8860B%22/><circle cx=%2250%22 cy=%2250%22 r=%2241%22 fill=%22%230F4C36%22/><text x=%2250%22 y=%2263%22 font-size=%2242%22 fill=%22%23FAF6ED%22 text-anchor=%22middle%22>অ</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ===================== LOGIN SCREEN ===================== -->
+<div id="loginScreen" class="login-wrap">
+  <div class="logo-slot login-logo"></div>
+  <div class="login-title">অর্থ<span style="color:var(--gold-bright);">পাঠ</span></div>
+  <div class="login-sub">ফিন্যান্স, ব্যাংকিং ও বিমা — সহজ ভাষায়</div>
+
+  <div class="login-card">
+    <div class="login-tabs">
+      <button class="login-tab active" id="tabStudent">শিক্ষার্থী লগইন</button>
+      <button class="login-tab" id="tabAdmin">শিক্ষক / এডমিন</button>
+    </div>
+
+    <form id="studentLoginForm">
+      <div class="field">
+        <label>তোমার নাম</label>
+        <input type="text" id="studentNameInput" placeholder="পূর্ণ নাম লিখুন" required>
+      </div>
+      <div class="field">
+        <label>মোবাইল নম্বর</label>
+        <input type="tel" id="studentPhoneInput" placeholder="01XXXXXXXXX" required>
+      </div>
+      <button type="submit" class="btn btn-primary">প্রবেশ করুন</button>
+    </form>
+
+    <form id="adminLoginForm" style="display:none;">
+      <div class="field">
+        <label>এডমিন পাসওয়ার্ড</label>
+        <input type="password" id="adminPassInput" placeholder="পাসওয়ার্ড দিন" required>
+      </div>
+      <button type="submit" class="btn btn-gold">এডমিন প্যানেলে প্রবেশ</button>
+    </form>
+  </div>
+  <div class="small-muted mt-14" style="color:var(--ink-soft);">© ২০২৬ অর্থপাঠ — মাহফুজুর রহমান রিমন</div>
+</div>
+
+<!-- ===================== MAIN APP ===================== -->
+<div id="mainApp" style="display:none;">
+
+  <header class="app-header">
+    <div class="brand-row">
+      <button class="back-btn" id="headerBackBtn" onclick="switchView(App.currentView)">‹</button>
+      <div class="logo-slot brand-logo"></div>
+      <div class="brand-title">অর্থ<span class="accent">পাঠ</span></div>
+      <button class="menu-btn" onclick="document.getElementById('quickMenu').classList.add('show')">☰</button>
+    </div>
+    <div class="ticker-wrap">
+      <div class="ticker-track">
+        <span>প্রিয় একাদশ/দ্বাদশ শ্রেণীর শিক্ষার্থীবৃন্দ — তোমাদের ফিন্যান্স, ব্যাংকিং ও বিমা বিষয়ে আর ভীতি নয়। সবচেয়ে সহজভাবে এই অর্থপাঠ অ্যাপে উপস্থাপন করা হয়েছে, যা পড়ে তোমরা উপকৃত হবে।</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div id="view-home" class="view active"></div>
+    <div id="view-practice" class="view"></div>
+    <div id="view-evaluation" class="view"></div>
+    <div id="view-contact" class="view"></div>
+    <div id="view-about" class="view"></div>
+  </main>
+
+  <nav class="bottom-nav">
+    <button class="nav-item active" data-view="home"><span class="nav-icon">🏠</span>হোম</button>
+    <button class="nav-item" data-view="practice"><span class="nav-icon">📚</span>চর্চা</button>
+    <button class="nav-item" data-view="evaluation"><span class="nav-icon">🏆</span>মূল্যায়ন</button>
+    <button class="nav-item" data-view="contact"><span class="nav-icon">💬</span>যোগাযোগ</button>
+    <button class="nav-item" data-view="about"><span class="nav-icon">👤</span>নিজ সম্পর্কে</button>
+  </nav>
+
+  <!-- Quick menu sheet -->
+  <div class="modal-overlay" id="quickMenu">
+    <div class="modal-sheet">
+      <div class="modal-handle"></div>
+      <div class="flex-row mb-14">
+        <div class="credit-avatar" style="background:var(--ledger-green-light); color:var(--ledger-green-deep);" id="studentInitialAvatar">👤</div>
+        <div>
+          <div style="font-weight:700;" id="studentNameDisplay">শিক্ষার্থী</div>
+          <div class="small-muted" id="connStatus">অনলাইন</div>
+        </div>
+      </div>
+      <button class="btn btn-outline mt-8" onclick="document.getElementById('quickMenu').classList.remove('show')">বন্ধ করুন</button>
+      <button class="btn btn-danger mt-8" onclick="logoutStudent()">লগআউট</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===================== ADMIN PANEL ===================== -->
+<div id="adminPanel" style="display:none;">
+  <header class="app-header">
+    <div class="brand-row">
+      <div class="logo-slot brand-logo"></div>
+      <div class="brand-title">অর্থ<span class="accent">পাঠ</span> <span style="font-size:14px; color:var(--gold-bright); font-weight:600;">এডমিন</span></div>
+      <button class="menu-btn" onclick="logoutAdmin()" title="লগআউট">⎋</button>
+    </div>
+  </header>
+
+  <main style="padding-bottom: 80px;">
+    <div id="aview-content" class="admin-view view active" style="display:block; padding:16px 14px; max-width:640px; margin:0 auto;"></div>
+    <div id="aview-quiz" class="admin-view view" style="display:none; padding:16px 14px; max-width:640px; margin:0 auto;"></div>
+    <div id="aview-students" class="admin-view view" style="display:none; padding:16px 14px; max-width:640px; margin:0 auto;"></div>
+  </main>
+
+  <nav class="bottom-nav">
+    <button class="admin-nav-item nav-item active" data-aview="content"><span class="nav-icon">📤</span>কনটেন্ট</button>
+    <button class="admin-nav-item nav-item" data-aview="quiz"><span class="nav-icon">📝</span>কুইজ</button>
+    <button class="admin-nav-item nav-item" data-aview="students"><span class="nav-icon">👥</span>শিক্ষার্থী</button>
+  </nav>
+</div>
+
+<script>
+// Fix admin view CSS since .view/.admin-view share display logic with JS-only toggling
+document.addEventListener("DOMContentLoaded", () => {
+  const style = document.createElement("style");
+  style.textContent = `
+    .admin-view { display:none; }
+    .admin-view.active { display:block; }
+  `;
+  document.head.appendChild(style);
+});
+</script>
+
+<script src="js/data.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/app.js"></script>
+<script src="js/admin.js"></script>
+<script>
+  applyChapterNameOverrides();
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js').catch(() => {});
+    });
+  }
+</script>
+</body>
+</html>
