@@ -44,7 +44,7 @@ function updateOnlineBadge() {
 // LOGO (uses the app's real icon image, cached offline via service worker)
 // ============================================================
 function renderLogo() {
-  const img = `<img src="assets/icon-512.png" alt="অর্থপাঠ" style="width:100%; height:100%; object-fit:contain; border-radius:50%;">`;
+  const img = `<img src="icon-512.png" alt="অর্থপাঠ" style="width:100%; height:100%; object-fit:contain; border-radius:50%;">`;
   document.querySelectorAll(".logo-slot").forEach(el => el.innerHTML = img);
 }
 
